@@ -465,6 +465,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1093514089}
+  - component: {fileID: 1093514090}
   m_Layer: 0
   m_Name: Lobby Manager
   m_TagString: Untagged
@@ -486,6 +487,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1093514090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093514088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83754d0cba013f541bb541a061cf4f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connectionInfoText: {fileID: 1293001234}
+  joinButton: {fileID: 1048942299}
 --- !u!1 &1118648520
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,8 +694,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: connection info here
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 38443cd6bcf1f7349aa0d4b48473e660, type: 2}
-  m_sharedMaterial: {fileID: 541620286585386498, guid: 38443cd6bcf1f7349aa0d4b48473e660, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0eb7029f53b2ba54e977b09c9dafc011, type: 2}
+  m_sharedMaterial: {fileID: 1680258657852034796, guid: 0eb7029f53b2ba54e977b09c9dafc011, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
