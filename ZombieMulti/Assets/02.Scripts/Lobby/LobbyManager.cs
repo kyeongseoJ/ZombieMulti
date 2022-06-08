@@ -20,7 +20,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks{
         // 룸 접속 버튼을 잠시 비활성화 : 접속하는동안 다시 시도하는 것을 방지
         joinButton.interactable = false;
         // 접속 시도 중임을 텍스트로 표시
-        connectionInfoText.text = "마스터 서버에 접속 중...";
+        connectionInfoText.text = "갱스터 서버에 접속 중...";
         
     }
 
@@ -30,7 +30,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks{
         // 룸 접속 버튼을 활성화
         joinButton.interactable = true;
         // 접속 정보 표시
-        connectionInfoText.text = "온라인 : 마스터 서버와 연결됨";
+        connectionInfoText.text = "온라인 : 갱스터 서버와 연결됨";
     }
 
     // 마스터 서버 접속 실패 시 자동 실행
@@ -39,7 +39,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks{
         // 룸 접속 버튼 비활성화
         joinButton.interactable =false;
         // 접속 정보 표시
-        connectionInfoText.text = "오프라인 : 마스터 서버와 연결되지 않음 \n 접속 재시도 중...";
+        connectionInfoText.text = "오프라인 : 갱스터 서버와 연결되지 않음 \n 접속 재시도 중...";
         // 마스터 서버로의 재접속 시도
         PhotonNetwork.ConnectUsingSettings();
     }
@@ -57,7 +57,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks{
         }
         else{
             // 마스터 서버에 접속 중이 아니라면 마스터 서버에 접속 시도
-            connectionInfoText.text = "오프라인 : 마스터 서버와 연결되지 않음 \n 접속 재시도 중...";
+            connectionInfoText.text = "오프라인 : 갱스터 서버와 연결되지 않음 \n 접속 재시도 중...";
             // 마스터 서버로의 재접속 시도
             PhotonNetwork.ConnectUsingSettings();
         }
@@ -76,9 +76,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks{
     public override void OnJoinedRoom()
     {
         // 접속 상태 표시
-        connectionInfoText.text = "";
+        connectionInfoText.text = "방 참가 성공";
         // 모든 룸 참가자가 Main 씬을 로드하게 함
         PhotonNetwork.LoadLevel("Main");
     }
-
 }
