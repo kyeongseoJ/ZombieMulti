@@ -94,7 +94,7 @@ public class ZombieSpawner : MonoBehaviourPun, IPunObservable
         int spawnCount = Mathf.RoundToInt(wave*1.5f);
 
         // spawnCount 만큼 좀비 생성
-        for(int i =0; i < spawnCount; i++){
+        for(int i = 0; i < spawnCount; i++){
             // 좀비 생성 처리 실행
             CreateZombie();
         }
@@ -104,7 +104,7 @@ public class ZombieSpawner : MonoBehaviourPun, IPunObservable
     private void CreateZombie()
     {
         // 사용할 좀비 데이터 랜덤으로 결정
-        ZombieData zombieData= zombieDatas[Random.Range(0, zombieDatas.Length)];
+        ZombieData zombieData = zombieDatas[Random.Range(0, zombieDatas.Length)];
 
         // 생성할 위치를 랜덤으로 결정
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
@@ -112,16 +112,23 @@ public class ZombieSpawner : MonoBehaviourPun, IPunObservable
         // 좀비 프리팹으로부터 좀비 생성, 네트워크 상의 모든 클라이언트에 생성됨
         GameObject createdZombie = PhotonNetwork.Instantiate(zombiePrefab.gameObject.name, spawnPoint.position, spawnPoint.rotation);
 
-        // 생성한 좀비ㅡㄹ 셋업하기 위해 zombie 컴포넌트를 가져옴
+        // 생성한 좀비를 셋업하기 위해 zombie 컴포넌트를 가져옴
         Zombie zombie = createdZombie.GetComponent<Zombie>();
 
         // 생성한 좀비 능력치 설정
         zombie.photonView.RPC("Setup", RpcTarget.All, zombieData.health, zombieData.damage, zombieData.speed, zombieData.skinColor);
+        // skinColor에서 에러가 난다. 직렬화/역직렬화 없이도 가능한 방법 알아두면 좋다
+
+        // 동일한 4채널 배열로 변환 해서 전달가능하다.
+        //Vector4 colorVector = zombieData.skinColor;
+        // 직렬화 과정 없이도 아래 방식으로 변환해서 전달이 가능하다.
+        //Quaternion colorVector = new Quaternion(zombieData.skinColor.r, zombieData.skinColor.g, zombieData.skinColor.b, zombieData.skinColor.a);
+        //zombie.photonView.RPC("Setup", RpcTarget.All, zombieData.health, zombieData.damage, zombieData.speed, colorVector);
 
         // 생성된 좀비를 리스트애 추가
         zombies.Add(zombie);
 
-        // 좀비의 onDeath 이벤트에 익명 메서드 등록
+        // 좀비의 onDeath 이벤트에 익명 메서드 등록 : 람다식 사용 + 이벤트 구독 
         // 사망한 좀비를 리스트에서 제거
         zombie.onDeath += () => zombies.Remove(zombie);
         // 사망한 좀비를 10초 뒤에 파괴

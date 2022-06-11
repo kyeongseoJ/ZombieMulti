@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI; // 내비메시 관련 코드
 
 // 주기적으로 아이템을 플레이어 근처에 생성하는 스크립트
-public class ItemSpawner : MonoBehaviourPun
+public class ItemSpawner : MonoBehaviourPun 
 {
     public GameObject[] items; // 생성할 아이템
     //public Transform palyerTransform; // 플레이어의 트랜스폼 : 위치 => 맵 중심으로 변경(0,0,0)

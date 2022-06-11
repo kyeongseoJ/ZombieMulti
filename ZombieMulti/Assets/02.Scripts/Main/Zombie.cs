@@ -154,7 +154,7 @@ public class Zombie : LivingEntity
 
         // AI 추적을 중지하고 내비메시 컴포넌트를 비활성화
         navMeshAgent.isStopped = true;
-        // navMeshAgent.enabled = false;
+        navMeshAgent.enabled = false;
 
         // 사망 애니메이션 재생
         zombieAnimator.SetTrigger("Die");
